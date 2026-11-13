@@ -23,4 +23,9 @@ Ranks, best/second highlighting and the coverage marks (†, ‡) are computed i
 
 ## Figures
 
-`static/images/*.webp` are rendered from the paper PDFs at 2x width and cropped to content. Faces are blurred in the source figures. Do not add video files to this repository.
+```bash
+pip install pymupdf pillow
+python tools/render_figures.py /path/to/arxiv_paper/figures
+```
+
+This renders `teaser.webp` and `pipeline.webp` at 3x, cropped to content. If a size changes, update the `width`/`height` in `index.html`. The dataset statistics are HTML bars in `index.html`, not images. Faces are blurred in the source figures. Do not add video files to this repository.

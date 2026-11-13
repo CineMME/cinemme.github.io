@@ -33,7 +33,6 @@
   --strip: #141C26;
   --hole: #FAFAFB;
   --figure: #FFFFFF;
-  --fig-ink: #3A4552; /* text on figure cards, which stay light in both themes */
   --f-display: "Big Shoulders Display", "Arial Narrow", "Helvetica Neue", sans-serif;
   --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -91,27 +90,27 @@ p { margin: 0; }
 .nav-gh:hover { background: var(--surface); }
 
 /* hero */
-.hero { padding-block: 56px 40px; }
-.hero-grid { display: grid; gap: 36px; grid-template-columns: minmax(0, 1fr); align-items: end; }
-@media (min-width: 1040px) { .hero-grid { grid-template-columns: minmax(0, 1fr) 360px; gap: 48px; align-items: center; } }
-.chain { border: 1px solid var(--line); border-radius: 12px; background: var(--card); padding: 18px 20px; display: grid; gap: 2px; }
-.chain-title { font: 500 12px/1.4 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-.chain-row { display: grid; grid-template-columns: 58px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; padding: 7px 0; border-top: 1px dashed var(--line); font-size: 14.5px; }
-.chain-row .q { font: 800 22px/1 var(--f-display); color: var(--ground); }
-.chain-row.r .q { color: var(--reason); }
-.chain-row .m { font: 500 12px var(--f-mono); color: var(--muted); }
-.chain-track { font: 500 11px var(--f-mono); letter-spacing: .07em; text-transform: uppercase; padding-top: 10px; color: var(--ground); }
-.chain-track.r { color: var(--reason); }
-.venue { font: 500 13px/1.4 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.hero { padding-block: 48px 40px; text-align: center; }
+.venue { font: 500 13px/1.4 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px; }
 .venue b { color: var(--ink); font-weight: 500; }
-.wordmark { font: 800 clamp(72px, 13vw, 148px)/.86 var(--f-display); letter-spacing: -.005em; margin-top: 18px; }
+.wordmark { font: 800 clamp(64px, 11vw, 116px)/.88 var(--f-display); letter-spacing: -.005em; margin-top: 16px; }
 .wordmark span { color: var(--reason); }
-.subtitle { font: 500 clamp(20px, 2.6vw, 28px)/1.3 var(--f-body); margin-top: 18px; max-width: 30ch; letter-spacing: -.01em; }
-.authors { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 16px; font-weight: 500; }
+.subtitle { font: 500 clamp(20px, 2.5vw, 30px)/1.25 var(--f-body); margin: 18px auto 0; max-width: 42ch; letter-spacing: -.01em; }
+@media (min-width: 720px) { .subtitle span { display: inline-block; } }  /* break between the two halves of the title */
+.authors { margin: 28px auto 0; max-width: 900px; font-size: 16px; font-weight: 500; line-height: 1.9; text-wrap: balance; }
+.authors span, .affils span { display: inline-block; margin-inline: 9px; }
 .authors sup { font: 500 11px var(--f-mono); color: var(--muted); margin-left: 1px; }
-.affils { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 2px 20px; font-size: 13.5px; color: var(--muted); }
+.affils { margin: 8px auto 0; max-width: 900px; font-size: 13.5px; color: var(--muted); text-wrap: balance; }
 .affils sup { font-family: var(--f-mono); margin-right: 3px; }
-.btns { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
+.btns { margin-top: 28px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+/* the evidence chain: three grounding questions feed one reasoning question */
+.chain { margin-top: 40px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; text-align: left; }
+@media (min-width: 860px) { .chain { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.chain-cell { background: var(--ground-soft); color: var(--ground); padding: 16px 18px; display: grid; gap: 4px; align-content: start; }
+.chain-cell.r { background: var(--reason-soft); color: var(--reason); }
+.chain-cell .t { font: 500 11.5px/1.4 var(--f-mono); letter-spacing: .07em; text-transform: uppercase; }
+.chain-cell .q { font: 800 36px/1 var(--f-display); }
+.chain-cell .d { font-size: 14.5px; line-height: 1.4; color: var(--ink); }
 .btn {
   display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 8px;
   font: 500 15px/1 var(--f-body); text-decoration: none; color: var(--ink); background: var(--card);
@@ -120,8 +119,6 @@ p { margin: 0; }
 .btn:hover { border-color: var(--ink); }
 .btn--primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .btn--primary:hover { opacity: .9; }
-.btn--off { color: var(--muted); border-style: dashed; cursor: default; }
-.btn--off:hover { border-color: var(--line); }
 .btn svg { width: 17px; height: 17px; flex: none; }
 
 /* film strip band */
@@ -144,6 +141,9 @@ section + section { border-top: 1px solid var(--line); }
 
 figure { margin: 0; }
 .fig { background: var(--figure); border: 1px solid var(--line); border-radius: 10px; padding: clamp(8px, 1.6vw, 18px); }
+/* wide figures keep a readable size on phones and pan sideways instead of shrinking */
+.scroll-x { overflow-x: auto; }
+.scroll-x img { min-width: 700px; }
 figcaption { margin-top: 12px; font-size: 14px; color: var(--muted); max-width: 90ch; }
 figcaption b { color: var(--ink); font-weight: 600; }
 
@@ -221,12 +221,12 @@ th[aria-sort] .sort { color: var(--ground); }
 .tag--AV { background: var(--ground-soft); color: var(--ground); }
 .muted { color: var(--muted); }
 .lb-notes { margin-top: 14px; font-size: 13.5px; color: var(--muted); display: grid; gap: 4px; max-width: 110ch; }
-.lb-notes .cov { vertical-align: baseline; font-size: 13px; }
+.lb-notes .cov { vertical-align: baseline; font-size: 13px; width: auto; }
 .submit { margin-top: 18px; font-size: 14.5px; padding: 12px 16px; border-radius: 8px; background: var(--surface); max-width: 110ch; }
 
 /* findings */
 .findings { display: grid; gap: 18px; grid-template-columns: 1fr; margin-top: 32px; }
-@media (min-width: 900px) { .findings { grid-template-columns: 1fr 1fr; align-items: start; } }
+@media (min-width: 900px) { .findings { grid-template-columns: 1fr 1fr; } }
 .finding { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 .finding p { color: var(--muted); font-size: 15px; }
 .finding p strong { color: var(--ink); font-weight: 600; }
@@ -265,10 +265,13 @@ th[aria-sort] .sort { color: var(--ground); }
 
 /* benchmark */
 .build { display: grid; gap: 24px; margin-top: 32px; grid-template-columns: minmax(0, 1fr); }
-.stats4 { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 16px; }
-@media (min-width: 900px) { .stats4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.stats4 figure { background: var(--figure); border: 1px solid var(--line); border-radius: 10px; padding: 14px 14px 10px; }
-.stats4 figcaption { margin-top: 8px; text-align: center; color: var(--fig-ink); font-size: 13px; }
+.stats4 { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); margin-top: 16px; }
+@media (min-width: 600px) { .stats4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1040px) { .stats4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 9px; align-content: start; }
+.stat h4 { margin: 0 0 4px; font: 600 15px/1.3 var(--f-body); }
+.stat h4 span { display: block; font-weight: 400; font-size: 12.5px; color: var(--muted); }
+.stat .meter { grid-template-columns: 74px minmax(0, 1fr) 46px; gap: 10px; font-size: 13px; }
 .cmp th, .cmp td { padding: 8px 10px; text-align: center; border-bottom: 1px solid var(--line); white-space: nowrap; }
 .cmp th { font-size: 12.5px; font-weight: 600; vertical-align: bottom; }
 .cmp .l { text-align: left; }
@@ -278,9 +281,6 @@ th[aria-sort] .sort { color: var(--ground); }
 .y { color: var(--up); font-weight: 600; }
 .x { color: var(--muted); }
 
-/* examples */
-.ex-panel { margin-top: 18px; }
-.ex-panel .fig { display: block; max-width: 860px; }
 .skip { position: absolute; left: 12px; top: -48px; z-index: 30; background: var(--ink); color: var(--bg); padding: 8px 12px; border-radius: 6px; }
 .skip:focus { top: 12px; }
 
@@ -305,7 +305,6 @@ footer p { max-width: 100ch; }
       <a href="#leaderboard">Leaderboard</a>
       <a href="#findings">Findings</a>
       <a href="#benchmark">Benchmark</a>
-      <a href="#examples">Examples</a>
       <a href="#citation">Citation</a>
     </div>
     <a class="nav-gh" href="https://github.com/bytedance/vidi/tree/main/VUE_PLOT" aria-label="Code on GitHub">
@@ -315,12 +314,11 @@ footer p { max-width: 100ch; }
 </nav>
 
 <header class="hero" id="top">
-  <div class="wrap hero-grid">
-  <div>
+  <div class="wrap">
     <div class="venue"><b>NeurIPS 2026</b><span>Track on Evaluations and Datasets</span></div>
     <h1>
       <span class="wordmark" style="display:block">Cine<span>MME</span></span>
-      <span class="subtitle" style="display:block">From Dialogue Grounding to Narrative Reasoning in Multimodal Video Understanding</span>
+      <span class="subtitle" style="display:block"><span>From Dialogue Grounding to Narrative Reasoning</span> <span>in Multimodal Video Understanding</span></span>
     </h1>
     <div class="authors">
       <span>Jin Liu<sup>1,2,4</sup></span>
@@ -342,11 +340,15 @@ footer p { max-width: 100ch; }
       <span><sup>*</sup>Corresponding author</span>
     </div>
     <div class="btns">
-      <span class="btn btn--off" title="The arXiv link will be added when the paper is public">
+      <a class="btn btn--primary" href="https://arxiv.org/abs/2611.15161">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 17h5"/></svg>
-        Paper (coming soon)
-      </span>
-      <a class="btn btn--primary" href="https://github.com/bytedance/vidi/tree/main/VUE_PLOT">
+        Paper <span class="mono" style="font-size:13px;opacity:.8">arXiv:2611.15161</span>
+      </a>
+      <a class="btn" href="https://arxiv.org/pdf/2611.15161">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14"/></svg>
+        PDF
+      </a>
+      <a class="btn" href="https://github.com/bytedance/vidi/tree/main/VUE_PLOT">
         <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
         Code
       </a>
@@ -359,16 +361,12 @@ footer p { max-width: 100ch; }
         Leaderboard
       </a>
     </div>
-  </div>
-  <aside class="chain" aria-label="What CineMME measures">
-    <div class="chain-title">The dialogue-to-plot evidence chain</div>
-    <div class="chain-track">Grounding track</div>
-    <div class="chain-row"><span class="q">When</span><span>is the line spoken?</span><span class="m">tIoU ↑</span></div>
-    <div class="chain-row"><span class="q">What</span><span>is said?</span><span class="m">WER ↓</span></div>
-    <div class="chain-row"><span class="q">Who</span><span>says it?</span><span class="m">vIoU ↑</span></div>
-    <div class="chain-track r">Reasoning track</div>
-    <div class="chain-row r"><span class="q">Why</span><span>does it matter for the plot?</span><span class="m">MCQ · OEQ</span></div>
-  </aside>
+    <div class="chain" role="list" aria-label="The dialogue-to-plot evidence chain CineMME measures">
+      <div class="chain-cell" role="listitem"><span class="t">Grounding · tIoU ↑</span><span class="q">When</span><span class="d">is the line spoken?</span></div>
+      <div class="chain-cell" role="listitem"><span class="t">Grounding · WER ↓</span><span class="q">What</span><span class="d">is said?</span></div>
+      <div class="chain-cell" role="listitem"><span class="t">Grounding · vIoU ↑</span><span class="q">Who</span><span class="d">says it?</span></div>
+      <div class="chain-cell r" role="listitem"><span class="t">Reasoning · MCQ · OEQ</span><span class="q">Why</span><span class="d">does it matter for the plot?</span></div>
+    </div>
   </div>
 </header>
 
@@ -378,7 +376,7 @@ footer p { max-width: 100ch; }
 <div class="teaser">
   <div class="wrap">
     <figure>
-      <a class="fig" style="display:block" href="static/images/teaser.webp" title="Open full size"><img src="static/images/teaser.webp" width="2395" height="1131" alt="CineMME example. Top: a grounding query asks the model to locate every spoken line with its timestamps and the speaker's face boxes. Bottom: a reasoning question about the same clip, with a step-by-step answer that cites time ranges."></a>
+      <a class="fig scroll-x" style="display:block" href="static/images/teaser.webp" title="Open full size"><img src="static/images/teaser.webp" width="2864" height="1340" alt="CineMME example. Top: a grounding query asks the model to locate every spoken line with its timestamps and the speaker's face boxes. Bottom: a reasoning question about the same clip, with a step-by-step answer that cites time ranges."></a>
       <figcaption><b>Two linked tracks on the same clips.</b> CineMME-Grounding (top) asks when a line is spoken, what is said, and which face says it. CineMME-Reasoning (bottom) asks questions that require using this temporally grounded evidence. Faces are blurred in all figures. Click the figure for full size.</figcaption>
     </figure>
   </div>
@@ -389,9 +387,9 @@ footer p { max-width: 100ch; }
     <div class="overview">
       <div class="abstract read">
         <h2 class="eyebrow">Abstract</h2>
-        <p style="margin-top:10px">Narrative video understanding requires more than recognizing visible events: models must acquire dialogue evidence, bind it to speakers, and use it to infer plot meaning. Existing video benchmarks evaluate pieces of this problem, including video question answering, audio-visual reasoning, and temporal grounding, but rarely test whether these abilities form a coherent dialogue-to-plot evidence chain within the same clips.</p>
+        <p style="margin-top:10px">Narrative video understanding requires more than recognizing visible events: models must extract evidence from dialogue, bind it to speakers, and use it to infer narrative meaning. Existing video benchmarks evaluate aspects of this problem, including video question answering, audio-visual reasoning, and temporal grounding, but rarely test whether these abilities form a coherent dialogue-to-plot evidence chain within the same clips.</p>
         <p>We introduce CineMME, a human-verified benchmark designed to diagnose dialogue-grounded plot understanding, supported by approximately 1,600 expert person-hours of annotation. CineMME contains 975 curated short narrative video clips and two linked tracks: CineMME-Grounding, with 13,554 timestamped speech segments and 33,083 speaker face boxes for temporal dialogue localization, transcription, and active-speaker grounding; and CineMME-Reasoning, with 1,600 multiple-choice and 316 open-ended questions spanning perception, audio, narrative, social, and scene-presentation understanding.</p>
-        <p>Our main evaluation compares 20 MLLMs on reasoning and 9 omni-modal models on grounding. The results reveal a pronounced who-what-when decoupling: Gemini-3 Pro localizes dialogue in time (68.34% tIoU) and partially transcribes it (WER 28.99%), yet reaches only 7.74% vIoU for active-speaker grounding while achieving 67.66% MCQ accuracy over extractable answers. Modality ablations further show that vision is not uniformly beneficial: it improves perception-heavy questions but can hurt dialogue-centric reasoning. CineMME provides a compact diagnostic testbed for evaluating how multimodal video models connect dialogue, speakers, visual evidence, and narrative meaning.</p>
+        <p>Our main evaluation compares 20 MLLMs on reasoning and 9 omni-modal models on grounding. The results reveal a pronounced who-what-when decoupling: Gemini-3 Pro localizes dialogue in time (68.34% tIoU) and transcribes it with a WER of 28.99%, yet achieves only 7.74% vIoU for active-speaker grounding while achieving 67.66% MCQ accuracy on questions with extractable answers. Modality ablations further show that vision is not uniformly beneficial: it improves performance on perception-heavy questions but can hurt dialogue-centric reasoning. CineMME provides a compact diagnostic testbed for evaluating how multimodal video models connect dialogue, speakers, visual evidence, and narrative meaning.</p>
       </div>
       <aside class="tracks" aria-label="Dataset at a glance">
         <div class="total"><span class="big tnum">975</span><span>short narrative movie clips, human-verified</span></div>
@@ -522,19 +520,43 @@ footer p { max-width: 100ch; }
     <h2 class="h2">Benchmark</h2>
     <div class="build">
       <figure>
-        <a class="fig" style="display:block" href="static/images/pipeline.webp" title="Open full size"><img src="static/images/pipeline.webp" width="2290" height="923" loading="lazy" alt="Annotation pipeline: clip collection, face detection and identity labeling, and WhisperX transcription feed an MLLM that drafts speaker-aligned transcripts and multiple-choice questions; an adversarial step rewrites distractors; annotators then check timestamps, speech, speaker IDs, question logic, options, and answers."></a>
+        <a class="fig scroll-x" style="display:block" href="static/images/pipeline.webp" title="Open full size"><img src="static/images/pipeline.webp" width="2730" height="1091" loading="lazy" alt="Annotation pipeline: clip collection, face detection and identity labeling, and WhisperX transcription feed an MLLM that drafts speaker-aligned transcripts and multiple-choice questions; an adversarial step rewrites distractors; annotators then check timestamps, speech, speaker IDs, question logic, options, and answers."></a>
         <figcaption><b>Annotation pipeline.</b> WhisperX and InsightFace propose speech segments and face tracks. MLLMs draft speaker attribution, questions, and answer options, and an adversarial pass rewrites distractors that a model can shortcut. Expert annotators decide every final label in a double-blind check.</figcaption>
       </figure>
 
       <div>
         <h3 class="h3">Dataset statistics</h3>
         <div class="stats4">
-          <figure><img src="static/images/pie_segment.webp" width="877" height="887" loading="lazy" alt="Pie chart of speech segment durations"><figcaption>(a) Segment duration</figcaption></figure>
-          <figure><img src="static/images/pie_bbox.webp" width="889" height="885" loading="lazy" alt="Pie chart of speaker face box sizes"><figcaption>(b) Face box size</figcaption></figure>
-          <figure><img src="static/images/pie_tasktype.webp" width="887" height="888" loading="lazy" alt="Pie chart of question categories: Social 23.6%, Scene 21.9%, Audio 19.6%, Perception 19.1%, Narrative 15.8%"><figcaption>(c) Question category</figcaption></figure>
-          <figure><img src="static/images/pie_qlen.webp" width="900" height="914" loading="lazy" alt="Pie chart of question length in words"><figcaption>(d) Question length</figcaption></figure>
+          <div class="stat" role="img" aria-label="Segment duration, share of 13,554 speech segments: &lt;1 s 16.1 percent, 1–3 s 60.4 percent, 3–5 s 15.3 percent, ≥5 s 8.2 percent">
+            <h4>Segment duration<span>13,554 speech segments</span></h4>
+            <div class="meter"><span class="k">&lt;1 s</span><span class="bar" style="--v:16.1;--c:var(--ground)"></span><span class="v">16.1%</span></div>
+            <div class="meter"><span class="k">1–3 s</span><span class="bar" style="--v:60.4;--c:var(--ground)"></span><span class="v">60.4%</span></div>
+            <div class="meter"><span class="k">3–5 s</span><span class="bar" style="--v:15.3;--c:var(--ground)"></span><span class="v">15.3%</span></div>
+            <div class="meter"><span class="k">≥5 s</span><span class="bar" style="--v:8.2;--c:var(--ground)"></span><span class="v">8.2%</span></div>
+          </div>
+          <div class="stat" role="img" aria-label="Speaker face box area, share of 33,083 boxes, as a share of the frame: &lt;1% 11.0 percent, 1–5% 40.1 percent, 5–15% 34.9 percent, ≥15% 14.0 percent">
+            <h4>Speaker face box area<span>33,083 boxes, as a share of the frame</span></h4>
+            <div class="meter"><span class="k">&lt;1%</span><span class="bar" style="--v:11.0;--c:var(--ground)"></span><span class="v">11.0%</span></div>
+            <div class="meter"><span class="k">1–5%</span><span class="bar" style="--v:40.1;--c:var(--ground)"></span><span class="v">40.1%</span></div>
+            <div class="meter"><span class="k">5–15%</span><span class="bar" style="--v:34.9;--c:var(--ground)"></span><span class="v">34.9%</span></div>
+            <div class="meter"><span class="k">≥15%</span><span class="bar" style="--v:14.0;--c:var(--ground)"></span><span class="v">14.0%</span></div>
+          </div>
+          <div class="stat" role="img" aria-label="Question category, share of 1,916 questions: Social 23.6 percent, Scene 21.9 percent, Audio 19.6 percent, Perception 19.1 percent, Narrative 15.8 percent">
+            <h4>Question category<span>1,916 questions</span></h4>
+            <div class="meter"><span class="k">Social</span><span class="bar" style="--v:23.6;--c:var(--reason)"></span><span class="v">23.6%</span></div>
+            <div class="meter"><span class="k">Scene</span><span class="bar" style="--v:21.9;--c:var(--reason)"></span><span class="v">21.9%</span></div>
+            <div class="meter"><span class="k">Audio</span><span class="bar" style="--v:19.6;--c:var(--reason)"></span><span class="v">19.6%</span></div>
+            <div class="meter"><span class="k">Perception</span><span class="bar" style="--v:19.1;--c:var(--reason)"></span><span class="v">19.1%</span></div>
+            <div class="meter"><span class="k">Narrative</span><span class="bar" style="--v:15.8;--c:var(--reason)"></span><span class="v">15.8%</span></div>
+          </div>
+          <div class="stat" role="img" aria-label="Question length, share of 1,916 questions, in words: ≤20 23.9 percent, 21–35 68.8 percent, &gt;35 7.3 percent">
+            <h4>Question length<span>1,916 questions, in words</span></h4>
+            <div class="meter"><span class="k">≤20</span><span class="bar" style="--v:23.9;--c:var(--reason)"></span><span class="v">23.9%</span></div>
+            <div class="meter"><span class="k">21–35</span><span class="bar" style="--v:68.8;--c:var(--reason)"></span><span class="v">68.8%</span></div>
+            <div class="meter"><span class="k">&gt;35</span><span class="bar" style="--v:7.3;--c:var(--reason)"></span><span class="v">7.3%</span></div>
+          </div>
         </div>
-        <p class="lede" style="font-size:15px">Short speech segments demand precise timing, and tiny, small, and medium face boxes make speaker grounding hard in multi-person scenes. Questions are spread across five categories, and 76.1% of them exceed 20 words.</p>
+        <p class="lede" style="font-size:15px">Short speech segments demand precise timing, and 86.0% of speaker face boxes cover less than 15% of the frame, which makes speaker grounding hard in multi-person scenes. Questions are spread across five categories, and 76.1% of them exceed 20 words.</p>
       </div>
 
       <div>
@@ -567,26 +589,6 @@ footer p { max-width: 100ch; }
   </div>
 </section>
 
-<section id="examples">
-  <div class="wrap">
-    <div class="eyebrow">One case per reasoning category</div>
-    <h2 class="h2">Examples</h2>
-    <p class="lede read">Each case shows sampled frames, the question and its options with the correct one in green, and model reasoning traces. The clips themselves are not redistributed.</p>
-    <div class="tabs" role="tablist" aria-label="Example category" style="margin-top:20px">
-      <button class="tab" role="tab" id="t-perception" aria-controls="ex-perception" aria-selected="true">Perception</button>
-      <button class="tab" role="tab" id="t-audio" aria-controls="ex-audio" aria-selected="false">Audio</button>
-      <button class="tab" role="tab" id="t-narrative" aria-controls="ex-narrative" aria-selected="false">Narrative</button>
-      <button class="tab" role="tab" id="t-social" aria-controls="ex-social" aria-selected="false">Social</button>
-      <button class="tab" role="tab" id="t-scene" aria-controls="ex-scene" aria-selected="false">Scene Presentation</button>
-    </div>
-    <div class="ex-panel" id="ex-perception" role="tabpanel" aria-labelledby="t-perception"><a class="fig" href="static/images/qa_perception.webp" title="Open full size"><img src="static/images/qa_perception.webp" width="1542" height="1500" loading="lazy" alt="Perception example: frames, a multiple-choice question, and model reasoning traces"></a></div>
-    <div class="ex-panel" id="ex-audio" role="tabpanel" aria-labelledby="t-audio" hidden><a class="fig" href="static/images/qa_audio.webp" title="Open full size"><img src="static/images/qa_audio.webp" width="1543" height="2308" loading="lazy" alt="Audio example: frames, a multiple-choice question about sound, and model reasoning traces"></a></div>
-    <div class="ex-panel" id="ex-narrative" role="tabpanel" aria-labelledby="t-narrative" hidden><a class="fig" href="static/images/qa_narrative.webp" title="Open full size"><img src="static/images/qa_narrative.webp" width="1543" height="1654" loading="lazy" alt="Narrative example: frames, a multiple-choice question about the plot, and model reasoning traces"></a></div>
-    <div class="ex-panel" id="ex-social" role="tabpanel" aria-labelledby="t-social" hidden><a class="fig" href="static/images/qa_social.webp" title="Open full size"><img src="static/images/qa_social.webp" width="1542" height="1964" loading="lazy" alt="Social example: a question about the professional relationship between two characters in a car chase, with six options and two model reasoning traces"></a></div>
-    <div class="ex-panel" id="ex-scene" role="tabpanel" aria-labelledby="t-scene" hidden><a class="fig" href="static/images/qa_scene_presentation.webp" title="Open full size"><img src="static/images/qa_scene_presentation.webp" width="1542" height="1992" loading="lazy" alt="Scene Presentation example: frames, a multiple-choice question about editing and camera work, and model reasoning traces"></a></div>
-  </div>
-</section>
-
 <section id="citation">
   <div class="wrap">
     <h2 class="h2">Citation</h2>
@@ -595,7 +597,8 @@ footer p { max-width: 100ch; }
   title     = {{CineMME}: From Dialogue Grounding to Narrative Reasoning in Multimodal Video Understanding},
   author    = {Liu, Jin and Du, Dawei and Liu, Yexiang and Zhu, Sijie and Chen, Fan and Duan, Junxian and Huang, Huaibo and He, Ran and Wen, Longyin and Chen, Zhenfang},
   booktitle = {Advances in Neural Information Processing Systems (NeurIPS), Track on Evaluations and Datasets},
-  year      = {2026}
+  year      = {2026},
+  note      = {arXiv:2611.15161}
 }</pre>
       <button class="copy" type="button" id="copy-bib" aria-live="polite">Copy</button>
     </div>
@@ -792,12 +795,6 @@ footer p { max-width: 100ch; }
     state.track = b.dataset.track; render();
     try { history.replaceState(null, '', '#' + state.track); } catch (_) {}
   });
-  const exTabs = document.querySelector('#examples [role="tablist"]');
-  tablist(exTabs, b => exTabs.querySelectorAll('[role="tab"]').forEach(x => {
-    const on = x === b; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1;
-    document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
-  }));
-  exTabs.querySelectorAll('[role="tab"]').forEach((x, i) => x.tabIndex = i ? -1 : 0);
 
   // #reasoning / #grounding open that leaderboard tab
   function fromHash() {
